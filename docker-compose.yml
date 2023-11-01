@@ -1,0 +1,29 @@
+version: "3.1"
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    container_name: "wpsitee"
+    ports:
+      - 5054:80
+    volumes:
+      - ~/carmech/wpsitee:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: senac
+      WORDPRESS_DB_PASSWORD: 123@senac
+      WORDPRESS_DB_NAME: projetodb
+
+  db:
+    image: mysql:8.0
+    restart: always
+    container_name: "wpmech"
+    environment:
+      MYSQL_DATABASE: projetodb
+      MYSQL_USER: senac
+      MYSQL_PASSWORD: 123@senac
+      MYSQL_ROOT_PASSWORD: 123@senac
+    ports:
+      - 4042:3306
+    volumes:
+      - ~/carmech/wpmech:/var/lib/mysql  
